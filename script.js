@@ -25,11 +25,32 @@ const enemy = {
 
 let score = 0;
 const keys = {};
+
 document.addEventListener("keydown", e => keys[e.code] = true);
 document.addEventListener("keyup", e => keys[e.code] = false);
 
+canvas.addEventListener("click", () => {
+  if (player.onGround) {
+    player.dy = player.jumpPower;
+    player.onGround = false;
+  }
+});
+
+canvas.addEventListener("touchstart", (e) => {
+  e.preventDefault(); // cegah scroll
+  if (player.onGround) {
+    player.dy = player.jumpPower;
+    player.onGround = false;
+  }
+}, { passive: false });
+
 function drawPlayer() {
-  ctx.drawImage(logo, player.x, player.y, player.width, player.height);
+  if (logo.complete) {
+    ctx.drawImage(logo, player.x, player.y, player.width, player.height);
+  } else {
+    ctx.fillStyle = "#000";
+    ctx.fillRect(player.x, player.y, player.width, player.height);
+  }
 }
 
 function drawEnemy() {
@@ -61,29 +82,32 @@ function updateEnemy() {
     document.getElementById("score").innerText = "Score: " + score;
   }
 
-  // collision
   if (
     player.x < enemy.x + enemy.width &&
     player.x + player.width > enemy.x &&
     player.y < enemy.y + enemy.height &&
     player.y + player.height > enemy.y
   ) {
-    alert("Game over! Final Score: " + score);
-    score = 0;
-    document.getElementById("score").innerText = "Score: 0";
-    enemy.x = 640;
+    setTimeout(() => {
+      alert("Game Over! Final Score: " + score);
+      score = 0;
+      document.getElementById("score").innerText = "Score: 0";
+      enemy.x = 640;
+    }, 50);
   }
 }
 
-// Background music
-const bgMusic = new Audio("assets/bg-music.mp3");
-bgMusic.loop = true;
-bgMusic.volume = 0.4;
-bgMusic.play().catch(() => {
-  document.body.addEventListener("click", () => {
-    bgMusic.play();
-  }, { once: true });
-});
+function claimSpot() {
+  const code = document.getElementById("codeInput").value;
+  const wallet = document.getElementById("walletInput").value;
+  const msg = document.getElementById("message");
+
+  if (code && wallet) {
+    msg.innerText = "✅ Code submitted!";
+  } else {
+    msg.innerText = "⚠️ Please enter code & wallet!";
+  }
+}
 
 function gameLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -94,14 +118,13 @@ function gameLoop() {
   requestAnimationFrame(gameLoop);
 }
 
-function claimSpot() {
-  const code = document.getElementById("codeInput").value;
-  const wallet = document.getElementById("walletInput").value;
-  if (code && wallet) {
-    document.getElementById("message").innerText = "✅ Code submitted!";
-  } else {
-    document.getElementById("message").innerText = "⚠️ Please enter code & wallet!";
-  }
-}
+logo.onload = () => {
+  gameLoop();
+};
 
-gameLoop();
+document.getElementById("jumpBtn").addEventListener("click", () => {
+  if (player.onGround) {
+    player.dy = player.jumpPower;
+    player.onGround = false;
+  }
+});

@@ -24,3 +24,20 @@ button {
   color: white;
   cursor: pointer;
 }
+canvas {
+  border: 2px solid #333;
+  background: #1e293b;
+  touch-action: none;
+}
+#jumpBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  font-size: 20px;
+  padding: 10px 20px;
+  background: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
