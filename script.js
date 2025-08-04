@@ -7,8 +7,8 @@ logo.src = "assets/logo.png";
 const player = {
   x: 50,
   y: 300,
-  width: 80,
-  height: 85,
+  width: 32,
+  height: 32,
   dy: 0,
   jumpPower: -10,
   gravity: 0.5,
