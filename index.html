@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EthOS Run v2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>🌈 EthOS Run v2</h1>
+  <canvas id="gameCanvas" width="640" height="360"></canvas>
+  <p id="score">Score: 0</p>
+
+  <div id="airdrop">
+    <h3>Enter your code and wallet</h3>
+    <input type="text" placeholder="e.g. dai123..." id="codeInput"/>
+    <input type="text" placeholder="0x..." id="walletInput"/>
+    <button onclick="claimSpot()">Claim Spot</button>
+    <p id="message"></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

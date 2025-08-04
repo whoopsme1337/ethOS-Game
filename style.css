@@ -1,0 +1,26 @@
+body {
+  background: linear-gradient(to bottom right, #c084fc, #60a5fa);
+  color: #fff;
+  font-family: monospace;
+  text-align: center;
+  padding: 20px;
+}
+canvas {
+  border: 2px solid #333;
+  background: #1e293b;
+}
+#airdrop {
+  margin-top: 20px;
+}
+input {
+  padding: 6px;
+  margin: 5px;
+  font-family: monospace;
+}
+button {
+  padding: 6px 12px;
+  background: #0ea5e9;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
